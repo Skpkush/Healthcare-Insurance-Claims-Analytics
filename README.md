@@ -35,6 +35,7 @@ A complete data analytics platform analyzing **50,000 insurance claims** across 
 
 ---
 
+
 ## Architecture
 
 ```
@@ -277,8 +278,9 @@ healthcare-insurance-claims-analytics/
 
 ---
 
+## About 
+python sql postgresql power-bi azure data-analytics etl-pipeline healthcare insurance dax azure-data-factory
 ## Author
-
 **Sumit Prajapat**  
 Data Analyst | Power BI | SQL | Python | Azure
 
