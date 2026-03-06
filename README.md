@@ -8,6 +8,18 @@
 ![Azure](https://img.shields.io/badge/Azure-Cloud%20Pipeline-0078D4)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+<img width="1919" height="931" alt="Pipeline success" src="https://github.com/user-attachments/assets/0f618c0a-0dbf-4d04-b821-3bb5c7864e50" />
+
+<img width="1902" height="764" alt="PIpeline building" src="https://github.com/user-attachments/assets/e3035e9e-f591-4663-85be-319c92e9924a" />
+
+<img width="1362" height="783" alt="Executive Dashboard 1" src="https://github.com/user-attachments/assets/79e5f8ba-2029-46e7-acad-e152279203eb" />
+
+<img width="1369" height="773" alt="Operartion Dashboard" src="https://github.com/user-attachments/assets/a74e4bf3-f955-41ed-8c2a-3bb9f38e13ba" />
+
+<img width="1339" height="768" alt="Risk dasboard" src="https://github.com/user-attachments/assets/97eb0e6b-e76f-4ff3-b4e4-75c75a844175" />
+
+
+
 ---
 
 ## Project Overview
@@ -66,16 +78,18 @@ Copy_dim_date → Copy_dim_patients → Copy_dim_providers → Copy_dim_policies
 ```
 
 **Pipeline Status: ✅ Succeeded**
+<img width="1902" height="764" alt="PIpeline building" src="https://github.com/user-attachments/assets/9fb6cb25-63b4-40e7-b462-e461bd419fbe" />
 
-![ADF Pipeline Success](images/adf_pipeline_success.png)
+<img width="1919" height="931" alt="Pipeline success" src="https://github.com/user-attachments/assets/240ca2d9-5619-478a-ab6f-59990eb26377" />
 
-### Azure Resources Overview
 
-![Azure Resource Group](images/azure_resource_group.png)
 
 ### Azure PostgreSQL Server
 
-![Azure PostgreSQL](images/azure_postgresql.png)
+<img width="1912" height="933" alt="Azure Postgres" src="https://github.com/user-attachments/assets/7ccc11a6-7995-4f69-9c5b-3b576ac7fda5" />
+
+### Azure Blob Storage Overview
+<img width="1898" height="855" alt="Azure Blob storage" src="https://github.com/user-attachments/assets/2ea656aa-43cb-4743-9925-82c6bd6852d6" />
 
 ---
 
@@ -188,7 +202,6 @@ SELECT * FROM claim_timeline WHERE claims_90d >= 3;
 - Custom Tooltip — mini-dashboard on hover
 
 **Advanced Features:**
-- Bookmark toggle (Executive View / Detailed View)
 - Page Navigation Buttons on all pages
 - Synced Slicers across pages
 - 8 Conditional Formatting rules
@@ -215,7 +228,7 @@ SELECT * FROM claim_timeline WHERE claims_90d >= 3;
 
 | Category | Technologies |
 |---|---|
-| **Languages** | Python, SQL, DAX, M (Power Query) |
+| **Languages** | Python, SQL, DAX |
 | **Database** | PostgreSQL 16, Azure Database for PostgreSQL |
 | **Cloud** | Azure Blob Storage, Azure Data Factory, Azure PostgreSQL Flexible Server |
 | **BI Tools** | Power BI Desktop, Power BI Service |
@@ -250,44 +263,9 @@ healthcare-insurance-claims-analytics/
 │   ├── azure_resource_group.png
 │   ├── adf_pipeline_success.png
 │   └── adf_studio_overview.png
-├── docs/
-│   ├── data_dictionary.md
-│   ├── insights_summary.md
-│   └── key_findings.json
 ├── requirements.txt
 └── README.md
 ```
-
----
-
-## Setup & Installation
-
-### Local Setup
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/healthcare-insurance-claims-analytics.git
-cd healthcare-insurance-claims-analytics
-
-# Create virtual environment
-python -m venv venv
-.\venv\Scripts\Activate.ps1  # Windows
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Generate data
-python data/generate_data.py
-
-# Create database in pgAdmin, then run schema
-# Open pgAdmin → Create database: claims_analytics
-# Run schema/01_create_schema.sql
-
-# Load data
-python data/load_to_postgres.py
-```
-
-### Azure Setup (Optional)
-See `docs/Azure_Pipeline_Guide.pdf` for step-by-step Azure deployment instructions.
 
 ---
 
