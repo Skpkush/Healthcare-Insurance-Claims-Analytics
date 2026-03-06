@@ -1,0 +1,201 @@
+provider_id,hospital_name,speciality,city,state,tier,bed_capacity,accreditation
+H0001,Lilavati Hospital Hyderabad,General Medicine,Bhopal,Madhya Pradesh,Tier 2,750,NABH
+H0002,Sahyadri Hospital Vadodara,Cardiology,Jaipur,Rajasthan,Tier 1,50,ISO
+H0003,Global Hospital Kolkata,Urology,Surat,Gujarat,Tier 1,300,NABL
+H0004,Max Hospital Coimbatore,Nephrology,Pune,Maharashtra,Tier 3,150,NABL
+H0005,Care Hospital Bangalore,ENT,Patna,Bihar,Tier 2,50,None
+H0006,Narayana Hospital Kochi,General Medicine,Coimbatore,Tamil Nadu,Tier 2,150,NABH
+H0007,Sir Ganga Ram Hospital Kochi,Neurology,Ahmedabad,Gujarat,Tier 1,150,NABH
+H0008,Breach Candy Hospital Coimbatore,Dermatology,Vadodara,Gujarat,Tier 3,200,JCI
+H0009,Sahyadri Hospital Patna,Cardiology,Hyderabad,Telangana,Tier 3,300,JCI
+H0010,Narayana Hospital Chandigarh,Orthopedics,Bhopal,Madhya Pradesh,Tier 2,300,None
+H0011,Breach Candy Hospital Kochi,Ophthalmology,Kolkata,West Bengal,Tier 3,100,None
+H0012,Global Hospital Coimbatore,Gastroenterology,Chennai,Tamil Nadu,Tier 3,150,NABH
+H0013,Global Hospital Jaipur,Gynecology,Mumbai,Maharashtra,Tier 2,150,JCI
+H0014,KIMS Hospital Nagpur,Ophthalmology,Chennai,Tamil Nadu,Tier 2,150,ISO
+H0015,KIMS Hospital Delhi,ENT,Bhopal,Madhya Pradesh,Tier 1,1000,None
+H0016,Manipal Hospital Ahmedabad,Orthopedics,Coimbatore,Tamil Nadu,Tier 1,300,None
+H0017,Manipal Hospital Patna,Neurology,Kolkata,West Bengal,Tier 1,1000,ISO
+H0018,Columbia Asia Hospital Nagpur,Dermatology,Lucknow,Uttar Pradesh,Tier 1,300,JCI
+H0019,Manipal Hospital Lucknow,Dermatology,Lucknow,Uttar Pradesh,Tier 1,150,NABH
+H0020,Hinduja Hospital Nagpur,ENT,Chennai,Tamil Nadu,Tier 3,150,NABL
+H0021,KIMS Hospital Pune,Oncology,Indore,Madhya Pradesh,Tier 1,200,JCI
+H0022,Breach Candy Hospital Jaipur,Pulmonology,Pune,Maharashtra,Tier 3,150,ISO
+H0023,Yashoda Hospital Bangalore,Dermatology,Nagpur,Maharashtra,Tier 2,500,ISO
+H0024,AIIMS Hospital Bangalore,Nephrology,Mumbai,Maharashtra,Tier 1,200,ISO
+H0025,Kokilaben Hospital Patna,Ophthalmology,Ahmedabad,Gujarat,Tier 2,150,NABL
+H0026,Sahyadri Hospital Indore,Pulmonology,Coimbatore,Tamil Nadu,Tier 1,300,ISO
+H0027,Columbia Asia Hospital Vadodara,Pediatrics,Hyderabad,Telangana,Tier 3,500,NABH
+H0028,Fortis Hospital Patna,Nephrology,Kolkata,West Bengal,Tier 3,150,NABH
+H0029,Sahyadri Hospital Visakhapatnam,Oncology,Bangalore,Karnataka,Tier 1,300,NABH
+H0030,Ruby Hall Hospital Bhopal,Oncology,Delhi,Delhi,Tier 3,50,None
+H0031,Wockhardt Hospital Patna,Oncology,Delhi,Delhi,Tier 2,200,NABH
+H0032,Hinduja Hospital Bhopal,General Medicine,Visakhapatnam,Andhra Pradesh,Tier 1,50,None
+H0033,Breach Candy Hospital Coimbatore,Gastroenterology,Lucknow,Uttar Pradesh,Tier 2,50,NABH
+H0034,Ruby Hall Hospital Jaipur,Oncology,Visakhapatnam,Andhra Pradesh,Tier 2,200,NABL
+H0035,Sir Ganga Ram Hospital Mumbai,Nephrology,Jaipur,Rajasthan,Tier 1,150,None
+H0036,Narayana Hospital Patna,Nephrology,Surat,Gujarat,Tier 3,300,JCI
+H0037,Columbia Asia Hospital Jaipur,Cardiology,Pune,Maharashtra,Tier 1,500,NABH
+H0038,Max Hospital Indore,Ophthalmology,Visakhapatnam,Andhra Pradesh,Tier 2,100,NABH
+H0039,Max Hospital Lucknow,Gastroenterology,Pune,Maharashtra,Tier 1,300,None
+H0040,Sahyadri Hospital Kochi,Pediatrics,Lucknow,Uttar Pradesh,Tier 3,200,NABL
+H0041,Yashoda Hospital Bangalore,Ophthalmology,Jaipur,Rajasthan,Tier 3,100,JCI
+H0042,Lilavati Hospital Ahmedabad,ENT,Jaipur,Rajasthan,Tier 1,300,NABL
+H0043,Medanta Hospital Chennai,ENT,Bangalore,Karnataka,Tier 2,200,NABL
+H0044,Max Hospital Indore,Gastroenterology,Indore,Madhya Pradesh,Tier 1,200,NABH
+H0045,Fortis Hospital Surat,Orthopedics,Chandigarh,Punjab,Tier 3,750,ISO
+H0046,Manipal Hospital Chandigarh,General Medicine,Bhopal,Madhya Pradesh,Tier 1,200,ISO
+H0047,Manipal Hospital Chandigarh,Pulmonology,Vadodara,Gujarat,Tier 3,1000,NABH
+H0048,Lilavati Hospital Lucknow,ENT,Lucknow,Uttar Pradesh,Tier 3,200,None
+H0049,Lilavati Hospital Kolkata,Oncology,Vadodara,Gujarat,Tier 2,100,None
+H0050,Care Hospital Hyderabad,Pediatrics,Hyderabad,Telangana,Tier 1,200,None
+H0051,Yashoda Hospital Jaipur,Pediatrics,Jaipur,Rajasthan,Tier 2,100,NABH
+H0052,Apollo Hospital Lucknow,ENT,Mumbai,Maharashtra,Tier 2,200,NABH
+H0053,Kokilaben Hospital Indore,Oncology,Patna,Bihar,Tier 2,300,None
+H0054,Sir Ganga Ram Hospital Nagpur,Ophthalmology,Chennai,Tamil Nadu,Tier 2,200,NABH
+H0055,KIMS Hospital Mumbai,Nephrology,Kolkata,West Bengal,Tier 2,50,NABH
+H0056,Global Hospital Kochi,Pediatrics,Pune,Maharashtra,Tier 2,200,None
+H0057,AIIMS Hospital Nagpur,Oncology,Patna,Bihar,Tier 3,50,NABH
+H0058,Columbia Asia Hospital Ahmedabad,Oncology,Pune,Maharashtra,Tier 1,300,NABL
+H0059,Manipal Hospital Coimbatore,General Medicine,Kolkata,West Bengal,Tier 2,300,NABL
+H0060,Columbia Asia Hospital Kochi,Cardiology,Visakhapatnam,Andhra Pradesh,Tier 3,1000,None
+H0061,KIMS Hospital Surat,Oncology,Bangalore,Karnataka,Tier 1,100,NABH
+H0062,Wockhardt Hospital Patna,Pulmonology,Nagpur,Maharashtra,Tier 2,200,None
+H0063,Ruby Hall Hospital Bangalore,Orthopedics,Delhi,Delhi,Tier 3,200,ISO
+H0064,Ruby Hall Hospital Kolkata,Pediatrics,Bangalore,Karnataka,Tier 2,750,JCI
+H0065,Hinduja Hospital Bhopal,General Medicine,Nagpur,Maharashtra,Tier 1,200,NABH
+H0066,Manipal Hospital Patna,Ophthalmology,Jaipur,Rajasthan,Tier 1,100,NABH
+H0067,Wockhardt Hospital Surat,Pediatrics,Vadodara,Gujarat,Tier 2,150,ISO
+H0068,Apollo Hospital Indore,Cardiology,Surat,Gujarat,Tier 1,300,NABL
+H0069,AIIMS Hospital Vadodara,Orthopedics,Hyderabad,Telangana,Tier 3,300,None
+H0070,AIIMS Hospital Lucknow,Pediatrics,Lucknow,Uttar Pradesh,Tier 2,500,NABL
+H0071,Apollo Hospital Coimbatore,Dermatology,Bhopal,Madhya Pradesh,Tier 1,100,JCI
+H0072,Breach Candy Hospital Chandigarh,Nephrology,Kochi,Kerala,Tier 3,1000,NABL
+H0073,Columbia Asia Hospital Bhopal,Neurology,Bangalore,Karnataka,Tier 2,50,None
+H0074,Hinduja Hospital Nagpur,Nephrology,Kolkata,West Bengal,Tier 1,1000,NABL
+H0075,Yashoda Hospital Lucknow,Gynecology,Jaipur,Rajasthan,Tier 2,500,NABH
+H0076,Ruby Hall Hospital Vadodara,Dermatology,Hyderabad,Telangana,Tier 1,300,None
+H0077,Apollo Hospital Vadodara,Orthopedics,Chennai,Tamil Nadu,Tier 3,300,JCI
+H0078,Fortis Hospital Hyderabad,Gastroenterology,Bangalore,Karnataka,Tier 2,50,JCI
+H0079,AIIMS Hospital Chandigarh,Nephrology,Nagpur,Maharashtra,Tier 3,50,ISO
+H0080,KIMS Hospital Visakhapatnam,ENT,Jaipur,Rajasthan,Tier 2,100,ISO
+H0081,Care Hospital Vadodara,Pulmonology,Kolkata,West Bengal,Tier 3,50,NABH
+H0082,Sir Ganga Ram Hospital Nagpur,Dermatology,Ahmedabad,Gujarat,Tier 1,200,NABH
+H0083,Manipal Hospital Nagpur,Pulmonology,Lucknow,Uttar Pradesh,Tier 3,100,None
+H0084,Max Hospital Surat,General Medicine,Mumbai,Maharashtra,Tier 3,500,NABH
+H0085,Sir Ganga Ram Hospital Kolkata,Dermatology,Visakhapatnam,Andhra Pradesh,Tier 2,150,ISO
+H0086,Global Hospital Chennai,Pediatrics,Mumbai,Maharashtra,Tier 3,300,NABH
+H0087,Ruby Hall Hospital Vadodara,Oncology,Vadodara,Gujarat,Tier 3,300,NABL
+H0088,Wockhardt Hospital Lucknow,Gastroenterology,Delhi,Delhi,Tier 3,150,NABH
+H0089,Max Hospital Pune,Cardiology,Indore,Madhya Pradesh,Tier 2,100,JCI
+H0090,Medanta Hospital Surat,Cardiology,Nagpur,Maharashtra,Tier 2,150,ISO
+H0091,Narayana Hospital Delhi,Gynecology,Bhopal,Madhya Pradesh,Tier 3,300,NABH
+H0092,Care Hospital Coimbatore,Neurology,Hyderabad,Telangana,Tier 3,200,NABL
+H0093,Apollo Hospital Pune,Neurology,Bangalore,Karnataka,Tier 2,150,None
+H0094,Manipal Hospital Bangalore,Oncology,Kochi,Kerala,Tier 3,500,NABL
+H0095,Sir Ganga Ram Hospital Lucknow,Pulmonology,Mumbai,Maharashtra,Tier 1,50,None
+H0096,Manipal Hospital Ahmedabad,Gynecology,Bhopal,Madhya Pradesh,Tier 3,300,None
+H0097,Kokilaben Hospital Kochi,Ophthalmology,Pune,Maharashtra,Tier 1,150,None
+H0098,Max Hospital Patna,Pediatrics,Kochi,Kerala,Tier 1,300,None
+H0099,Fortis Hospital Indore,General Medicine,Chennai,Tamil Nadu,Tier 2,750,NABH
+H0100,Sahyadri Hospital Mumbai,ENT,Pune,Maharashtra,Tier 2,300,None
+H0101,Narayana Hospital Chandigarh,Neurology,Mumbai,Maharashtra,Tier 2,150,None
+H0102,Hinduja Hospital Nagpur,Gynecology,Jaipur,Rajasthan,Tier 2,100,None
+H0103,Narayana Hospital Chennai,Dermatology,Chennai,Tamil Nadu,Tier 2,500,NABH
+H0104,AIIMS Hospital Surat,Nephrology,Jaipur,Rajasthan,Tier 1,200,None
+H0105,Hinduja Hospital Coimbatore,Orthopedics,Jaipur,Rajasthan,Tier 3,50,None
+H0106,Max Hospital Nagpur,Gastroenterology,Nagpur,Maharashtra,Tier 2,300,None
+H0107,Manipal Hospital Hyderabad,Ophthalmology,Kochi,Kerala,Tier 2,150,NABH
+H0108,Manipal Hospital Lucknow,Dermatology,Bangalore,Karnataka,Tier 2,50,NABH
+H0109,Hinduja Hospital Coimbatore,Nephrology,Pune,Maharashtra,Tier 3,750,None
+H0110,Narayana Hospital Visakhapatnam,Pulmonology,Visakhapatnam,Andhra Pradesh,Tier 2,200,JCI
+H0111,KIMS Hospital Lucknow,Pulmonology,Patna,Bihar,Tier 1,150,NABL
+H0112,KIMS Hospital Kolkata,General Medicine,Bhopal,Madhya Pradesh,Tier 3,300,None
+H0113,Sahyadri Hospital Patna,Oncology,Nagpur,Maharashtra,Tier 3,500,NABH
+H0114,Lilavati Hospital Kolkata,Pulmonology,Jaipur,Rajasthan,Tier 2,50,NABL
+H0115,Apollo Hospital Hyderabad,Urology,Patna,Bihar,Tier 3,300,NABL
+H0116,Wockhardt Hospital Bangalore,Gynecology,Bhopal,Madhya Pradesh,Tier 2,300,NABH
+H0117,Sir Ganga Ram Hospital Visakhapatnam,Cardiology,Chennai,Tamil Nadu,Tier 2,100,NABH
+H0118,Columbia Asia Hospital Kochi,Gastroenterology,Chandigarh,Punjab,Tier 2,200,NABH
+H0119,Ruby Hall Hospital Vadodara,Urology,Delhi,Delhi,Tier 2,50,NABH
+H0120,Global Hospital Patna,Cardiology,Coimbatore,Tamil Nadu,Tier 1,300,ISO
+H0121,Wockhardt Hospital Vadodara,Orthopedics,Vadodara,Gujarat,Tier 1,500,None
+H0122,Fortis Hospital Bangalore,General Medicine,Coimbatore,Tamil Nadu,Tier 1,100,JCI
+H0123,Kokilaben Hospital Patna,Orthopedics,Kolkata,West Bengal,Tier 1,500,NABH
+H0124,Breach Candy Hospital Lucknow,Pulmonology,Chandigarh,Punjab,Tier 2,300,NABH
+H0125,Sir Ganga Ram Hospital Visakhapatnam,Oncology,Indore,Madhya Pradesh,Tier 2,150,None
+H0126,Narayana Hospital Bhopal,Neurology,Chennai,Tamil Nadu,Tier 1,300,None
+H0127,Columbia Asia Hospital Pune,Gynecology,Coimbatore,Tamil Nadu,Tier 3,50,NABH
+H0128,Care Hospital Bhopal,Pediatrics,Coimbatore,Tamil Nadu,Tier 1,750,NABH
+H0129,Wockhardt Hospital Nagpur,Nephrology,Kolkata,West Bengal,Tier 2,200,ISO
+H0130,Narayana Hospital Vadodara,Nephrology,Nagpur,Maharashtra,Tier 1,200,None
+H0131,Medanta Hospital Nagpur,General Medicine,Hyderabad,Telangana,Tier 1,300,NABL
+H0132,Fortis Hospital Ahmedabad,Dermatology,Mumbai,Maharashtra,Tier 1,200,ISO
+H0133,Narayana Hospital Jaipur,Urology,Hyderabad,Telangana,Tier 2,500,ISO
+H0134,Yashoda Hospital Lucknow,Dermatology,Bhopal,Madhya Pradesh,Tier 3,200,None
+H0135,Max Hospital Kolkata,Cardiology,Chandigarh,Punjab,Tier 1,750,NABH
+H0136,Global Hospital Bhopal,Cardiology,Delhi,Delhi,Tier 2,200,None
+H0137,Yashoda Hospital Chennai,Nephrology,Surat,Gujarat,Tier 1,100,NABL
+H0138,Breach Candy Hospital Bangalore,Pediatrics,Patna,Bihar,Tier 3,750,ISO
+H0139,Medanta Hospital Kochi,Ophthalmology,Bhopal,Madhya Pradesh,Tier 3,300,JCI
+H0140,Ruby Hall Hospital Bhopal,Gastroenterology,Nagpur,Maharashtra,Tier 1,300,NABL
+H0141,Wockhardt Hospital Pune,Orthopedics,Delhi,Delhi,Tier 2,1000,ISO
+H0142,Lilavati Hospital Kolkata,Pediatrics,Vadodara,Gujarat,Tier 3,50,NABL
+H0143,Sahyadri Hospital Delhi,Cardiology,Ahmedabad,Gujarat,Tier 2,150,NABH
+H0144,Wockhardt Hospital Mumbai,Oncology,Kochi,Kerala,Tier 2,100,NABL
+H0145,Max Hospital Patna,Nephrology,Patna,Bihar,Tier 2,200,JCI
+H0146,Sir Ganga Ram Hospital Chandigarh,Gastroenterology,Visakhapatnam,Andhra Pradesh,Tier 2,500,NABH
+H0147,Sir Ganga Ram Hospital Kolkata,Pediatrics,Bhopal,Madhya Pradesh,Tier 3,1000,None
+H0148,Sir Ganga Ram Hospital Delhi,Orthopedics,Bangalore,Karnataka,Tier 3,200,NABH
+H0149,Apollo Hospital Jaipur,Pediatrics,Kochi,Kerala,Tier 3,300,NABL
+H0150,Medanta Hospital Hyderabad,Pediatrics,Bangalore,Karnataka,Tier 2,750,NABH
+H0151,Ruby Hall Hospital Patna,Dermatology,Nagpur,Maharashtra,Tier 2,300,JCI
+H0152,Global Hospital Patna,Nephrology,Surat,Gujarat,Tier 2,100,NABH
+H0153,Max Hospital Bangalore,ENT,Mumbai,Maharashtra,Tier 3,200,NABL
+H0154,Yashoda Hospital Ahmedabad,Gastroenterology,Kolkata,West Bengal,Tier 2,1000,NABH
+H0155,Wockhardt Hospital Hyderabad,General Medicine,Hyderabad,Telangana,Tier 2,1000,NABH
+H0156,Global Hospital Jaipur,Cardiology,Delhi,Delhi,Tier 1,200,None
+H0157,Narayana Hospital Pune,Neurology,Kochi,Kerala,Tier 2,500,ISO
+H0158,Apollo Hospital Visakhapatnam,Cardiology,Lucknow,Uttar Pradesh,Tier 3,100,NABH
+H0159,Medanta Hospital Pune,Orthopedics,Chennai,Tamil Nadu,Tier 2,100,NABH
+H0160,Kokilaben Hospital Chennai,Urology,Jaipur,Rajasthan,Tier 1,1000,None
+H0161,Yashoda Hospital Nagpur,Nephrology,Chandigarh,Punjab,Tier 1,100,NABH
+H0162,Narayana Hospital Bangalore,Dermatology,Indore,Madhya Pradesh,Tier 2,100,None
+H0163,Apollo Hospital Jaipur,Gastroenterology,Indore,Madhya Pradesh,Tier 3,150,NABL
+H0164,AIIMS Hospital Patna,Neurology,Surat,Gujarat,Tier 3,200,NABH
+H0165,Breach Candy Hospital Pune,Ophthalmology,Chennai,Tamil Nadu,Tier 3,200,ISO
+H0166,Manipal Hospital Delhi,Cardiology,Jaipur,Rajasthan,Tier 2,150,None
+H0167,Yashoda Hospital Kolkata,Pulmonology,Ahmedabad,Gujarat,Tier 2,750,NABL
+H0168,Wockhardt Hospital Delhi,ENT,Vadodara,Gujarat,Tier 2,750,NABL
+H0169,Sahyadri Hospital Chennai,Ophthalmology,Nagpur,Maharashtra,Tier 2,150,NABL
+H0170,Sir Ganga Ram Hospital Lucknow,Pulmonology,Delhi,Delhi,Tier 2,150,None
+H0171,Wockhardt Hospital Delhi,ENT,Vadodara,Gujarat,Tier 2,300,ISO
+H0172,Care Hospital Mumbai,Dermatology,Bhopal,Madhya Pradesh,Tier 2,300,NABH
+H0173,Fortis Hospital Nagpur,Oncology,Hyderabad,Telangana,Tier 1,150,NABH
+H0174,Manipal Hospital Ahmedabad,ENT,Lucknow,Uttar Pradesh,Tier 1,150,NABH
+H0175,Breach Candy Hospital Ahmedabad,Neurology,Kochi,Kerala,Tier 3,150,NABH
+H0176,Manipal Hospital Bangalore,ENT,Visakhapatnam,Andhra Pradesh,Tier 3,100,NABH
+H0177,Apollo Hospital Bhopal,Gastroenterology,Coimbatore,Tamil Nadu,Tier 2,200,ISO
+H0178,Apollo Hospital Mumbai,Pediatrics,Kochi,Kerala,Tier 1,300,NABH
+H0179,Ruby Hall Hospital Kolkata,Cardiology,Mumbai,Maharashtra,Tier 3,300,NABL
+H0180,Max Hospital Ahmedabad,Cardiology,Patna,Bihar,Tier 2,300,ISO
+H0181,Medanta Hospital Pune,Pediatrics,Kochi,Kerala,Tier 2,150,NABH
+H0182,Narayana Hospital Delhi,Dermatology,Chandigarh,Punjab,Tier 2,300,NABH
+H0183,Hinduja Hospital Kochi,Pulmonology,Hyderabad,Telangana,Tier 2,50,NABH
+H0184,Medanta Hospital Chandigarh,Pulmonology,Chennai,Tamil Nadu,Tier 2,200,NABH
+H0185,Ruby Hall Hospital Surat,Gynecology,Jaipur,Rajasthan,Tier 3,300,None
+H0186,Manipal Hospital Visakhapatnam,Oncology,Coimbatore,Tamil Nadu,Tier 1,200,ISO
+H0187,Manipal Hospital Surat,Pulmonology,Indore,Madhya Pradesh,Tier 1,200,NABH
+H0188,Sir Ganga Ram Hospital Bhopal,Dermatology,Surat,Gujarat,Tier 1,200,NABL
+H0189,Medanta Hospital Ahmedabad,ENT,Bangalore,Karnataka,Tier 2,750,NABH
+H0190,Manipal Hospital Chennai,Oncology,Patna,Bihar,Tier 1,200,JCI
+H0191,Breach Candy Hospital Chandigarh,Dermatology,Surat,Gujarat,Tier 1,300,JCI
+H0192,Narayana Hospital Mumbai,General Medicine,Indore,Madhya Pradesh,Tier 1,1000,NABL
+H0193,Sir Ganga Ram Hospital Chandigarh,Gynecology,Nagpur,Maharashtra,Tier 1,300,NABH
+H0194,Apollo Hospital Nagpur,Pediatrics,Mumbai,Maharashtra,Tier 2,200,NABH
+H0195,Manipal Hospital Patna,Orthopedics,Chennai,Tamil Nadu,Tier 1,50,ISO
+H0196,Columbia Asia Hospital Bangalore,Pulmonology,Ahmedabad,Gujarat,Tier 2,150,None
+H0197,Lilavati Hospital Visakhapatnam,Neurology,Vadodara,Gujarat,Tier 2,200,None
+H0198,Breach Candy Hospital Delhi,Cardiology,Hyderabad,Telangana,Tier 1,300,NABH
+H0199,Max Hospital Kolkata,Pediatrics,Chandigarh,Punjab,Tier 2,150,ISO
+H0200,Hinduja Hospital Lucknow,Urology,Kochi,Kerala,Tier 3,1000,ISO

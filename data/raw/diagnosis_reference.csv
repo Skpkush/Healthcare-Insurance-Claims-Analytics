@@ -1,0 +1,21 @@
+diagnosis_code,diagnosis_name,avg_cost_inr
+D001,Type 2 Diabetes,25000
+D002,Hypertension,15000
+D003,Acute Myocardial Infarction,350000
+D004,Pneumonia,80000
+D005,Dengue Fever,45000
+D006,Appendicitis,120000
+D007,Fracture - Femur,200000
+D008,Kidney Stone,90000
+D009,Cataract Surgery,60000
+D010,Malaria,35000
+D011,Thyroid Disorder,20000
+D012,Gastroenteritis,15000
+D013,Cesarean Delivery,150000
+D014,Knee Replacement,400000
+D015,Coronary Bypass,500000
+D016,Liver Cirrhosis,250000
+D017,Asthma Attack,40000
+D018,Spinal Surgery,450000
+D019,Cancer Treatment,600000
+D020,COVID-19 Treatment,200000
