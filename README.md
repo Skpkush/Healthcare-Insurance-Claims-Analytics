@@ -175,6 +175,14 @@ SELECT * FROM claim_timeline WHERE claims_90d >= 3;
 - `_05_Risk`: Patient Risk Score (5-factor model), Risk Category
 - `_06_Dynamic`: Dynamic Titles, YoY Arrow Indicators, Status Labels
 
+
+├── dashboard/
+│   ├── healthcare_claims.pbix   ← not in repo
+│   ├── page1_executive.png
+│   ├── page2_operations.png
+│   └── page3_fraud_risk.png
+
+
 ### Dashboard Pages:
 
 **Page 1 — Executive Command Center**
