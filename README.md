@@ -255,10 +255,10 @@ healthcare-insurance-claims-analytics/
 │   ├── business_analysis/      # Business metrics queries
 │   └── fraud_detection/        # Fraud & anomaly queries
 ├── dashboard/
-│   ├── healthcare_claims.pbix  # Power BI dashboard file
-│   ├── page1_executive.png     # Dashboard screenshots
-│   ├── page2_operations.png
-│   └── page3_fraud_risk.png
+│   ├── Claim analytics.pbix  # Power BI dashboard file
+│   ├── Executive Dashboard 1.png   # Dashboard screenshots
+│   ├── Operartion Dashboard.png
+│   └── Risk dasboard.png
 ├── images/
 │   ├── azure_postgresql.png    # Azure deployment screenshots
 │   ├── azure_blob_storage.png
