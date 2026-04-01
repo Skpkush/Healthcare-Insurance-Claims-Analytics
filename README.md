@@ -18,8 +18,6 @@
 
 <img width="1339" height="768" alt="Risk dasboard" src="https://github.com/user-attachments/assets/97eb0e6b-e76f-4ff3-b4e4-75c75a844175" />
 
-
-
 ---
 
 ## Project Overview
@@ -35,9 +33,7 @@ A complete data analytics platform analyzing **50,000 insurance claims** across 
 
 ---
 
-
 ## Architecture
-
 ```
 LOCAL ENVIRONMENT                    AZURE CLOUD
 ================                    ===========
@@ -73,29 +69,27 @@ Power BI Dashboard
 ### Pipeline: `pl_load_claims_data`
 
 5 sequential Copy Data activities loading dimension tables first, then fact table:
-
 ```
 Copy_dim_date → Copy_dim_patients → Copy_dim_providers → Copy_dim_policies → Copy_fact_claims
 ```
 
 **Pipeline Status: ✅ Succeeded**
+
 <img width="1902" height="764" alt="PIpeline building" src="https://github.com/user-attachments/assets/9fb6cb25-63b4-40e7-b462-e461bd419fbe" />
 
 <img width="1919" height="931" alt="Pipeline success" src="https://github.com/user-attachments/assets/240ca2d9-5619-478a-ab6f-59990eb26377" />
-
-
 
 ### Azure PostgreSQL Server
 
 <img width="1912" height="933" alt="Azure Postgres" src="https://github.com/user-attachments/assets/7ccc11a6-7995-4f69-9c5b-3b576ac7fda5" />
 
 ### Azure Blob Storage Overview
+
 <img width="1898" height="855" alt="Azure Blob storage" src="https://github.com/user-attachments/assets/2ea656aa-43cb-4743-9925-82c6bd6852d6" />
 
 ---
 
 ## Data Model — Star Schema
-
 ```
                     ┌──────────────┐
                     │   dim_date   │
@@ -175,7 +169,6 @@ SELECT * FROM claim_timeline WHERE claims_90d >= 3;
 - `_05_Risk`: Patient Risk Score (5-factor model), Risk Category
 - `_06_Dynamic`: Dynamic Titles, YoY Arrow Indicators, Status Labels
 
-
 ### Dashboard Pages:
 
 **Page 1 — Executive Command Center**
@@ -239,12 +232,30 @@ SELECT * FROM claim_timeline WHERE claims_90d >= 3;
 
 ---
 
-## Project Structure
+## How to Run
+```bash
+# 1. Clone the repository
+git clone https://github.com/Skpkush/Healthcare-Insurance-Claims-Analytics.git
+cd Healthcare-Insurance-Claims-Analytics
 
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Generate the dataset
+python data/generate_data.py
+
+# 4. Load data into PostgreSQL
+python data/load_to_postgres.py
+```
+
+> To open the dashboard — download `Claim analytics.pbix` from the `dashboard/` folder and open with Power BI Desktop.
+
+---
+
+## Project Structure
 ```
 healthcare-insurance-claims-analytics/
 ├── data/
-│   ├── raw/                    # 6 CSV files (generated)
 │   ├── generate_data.py        # Python data generator
 │   └── load_to_postgres.py     # Database loader (local + Azure)
 ├── schema/
@@ -255,12 +266,12 @@ healthcare-insurance-claims-analytics/
 │   ├── business_analysis/      # Business metrics queries
 │   └── fraud_detection/        # Fraud & anomaly queries
 ├── dashboard/
-│   ├── Claim analytics.pbix  # Power BI dashboard file
+│   ├── Claim analytics.pbix        # Power BI dashboard file
 │   ├── Executive Dashboard 1.png   # Dashboard screenshots
 │   ├── Operartion Dashboard.png
 │   └── Risk dasboard.png
 ├── images/
-│   ├── azure_postgresql.png    # Azure deployment screenshots
+│   ├── azure_postgresql.png
 │   ├── azure_blob_storage.png
 │   ├── azure_resource_group.png
 │   ├── adf_pipeline_success.png
@@ -276,14 +287,17 @@ healthcare-insurance-claims-analytics/
 - **PL-300** — Microsoft Power BI Data Analyst
 - **AWS Cloud Practitioner** — Amazon Web Services
 - **CFA Investment Foundations** — CFA Institute
+- **AZ900** -  Microsoft Azure Fundamental 
 
 ---
 
-## About 
-python sql postgresql power-bi azure data-analytics etl-pipeline healthcare insurance dax azure-data-factory
 ## Author
-**Sumit Prajapat**  
+
+**Sumit Prajapat**
 Data Analyst | Power BI | SQL | Python | Azure
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5)](https://www.linkedin.com/in/sumit-k-prajapat/)
+[![GitHub](https://img.shields.io/badge/GitHub-Skpkush-181717)](https://github.com/Skpkush)
+[![Email](https://img.shields.io/badge/Email-Contact-D14836)](mailto:sumitkprajapat@gmail.com)
 
 ---
 
