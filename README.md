@@ -176,13 +176,6 @@ SELECT * FROM claim_timeline WHERE claims_90d >= 3;
 - `_06_Dynamic`: Dynamic Titles, YoY Arrow Indicators, Status Labels
 
 
-├── dashboard/
-│   ├── healthcare_claims.pbix   ← not in repo
-│   ├── page1_executive.png
-│   ├── page2_operations.png
-│   └── page3_fraud_risk.png
-
-
 ### Dashboard Pages:
 
 **Page 1 — Executive Command Center**
