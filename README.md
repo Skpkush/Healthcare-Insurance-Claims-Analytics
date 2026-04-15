@@ -259,11 +259,11 @@ healthcare-insurance-claims-analytics/
 │   ├── generate_data.py        # Python data generator
 │   └── load_to_postgres.py     # Database loader (local + Azure)
 ├── schema/
-│   └── 01_create_schema.sql    # Star schema DDL
-├── queries/
-│   ├── window_functions/       # Window function queries
-│   ├── ctes/                   # CTE-based analysis
-│   ├── business_analysis/      # Business metrics queries
+│   └── 01_create_schema.sql
+└── queries/
+|   ├── business_analysis/     (7 files — loss ratio, risk scoring, rejection, state analysis, benchmarking, scorecard, monthly trend)
+|   ├── ctes/                  (4 real CTEs + 2 redirect stubs pointing to fraud_detection/)
+|   └── window_functions/      (7 files — running total, rank, moving avg, LAG, state rank, percentile, first/last)
 ├── dashboard/
 │   ├── Claim analytics.pbix        # Power BI dashboard file
 │   ├── Executive Dashboard 1.png   # Dashboard screenshots
@@ -286,7 +286,8 @@ healthcare-insurance-claims-analytics/
 - **PL-300** — Microsoft Power BI Data Analyst
 - **AWS Cloud Practitioner** — Amazon Web Services
 - **CFA Investment Foundations** — CFA Institute
-- **AZ900** -  Microsoft Azure Fundamental 
+- **AZ900** -  Microsoft Azure Fundamental
+- **DP900** -  Microsoft Azure Data Fundamental
 
 ---
 
