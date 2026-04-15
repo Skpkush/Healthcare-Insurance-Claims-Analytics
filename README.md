@@ -264,7 +264,6 @@ healthcare-insurance-claims-analytics/
 │   ├── window_functions/       # Window function queries
 │   ├── ctes/                   # CTE-based analysis
 │   ├── business_analysis/      # Business metrics queries
-│   └── fraud_detection/        # Fraud & anomaly queries
 ├── dashboard/
 │   ├── Claim analytics.pbix        # Power BI dashboard file
 │   ├── Executive Dashboard 1.png   # Dashboard screenshots
