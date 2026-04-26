@@ -2,6 +2,11 @@
 
 ## End-to-End Data Analytics Platform with Azure Cloud Pipeline
 
+## Note on Data
+Data is synthetically generated using Python to simulate realistic insurance 
+claim patterns. The schema design, SQL queries, DAX measures, and analytical 
+methodology are production-grade.
+
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791)
 ![Power BI](https://img.shields.io/badge/Power%20BI-PL--300%20Certified-F2C811)
