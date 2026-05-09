@@ -1,0 +1,21 @@
+ table_name | row_count |  earliest  |   latest   | weekend_count 
+------------+-----------+------------+------------+---------------
+ dim_date   |      1096 | 2008-01-01 | 2010-12-31 |           312
+(1 row)
+
+  table_name  | row_count | fraud_count | fraud_pct 
+--------------+-----------+-------------+-----------
+ dim_provider |      5410 |         506 |      9.35
+(1 row)
+
+       table_name       | rows 
+------------------------+------
+ bridge_claim_diagnosis |    0
+ bridge_claim_procedure |    0
+ dim_beneficiary        |    0
+ dim_diagnosis_code     |    0
+ dim_procedure_code     |    0
+ fact_inpatient_claims  |    0
+ fact_outpatient_claims |    0
+(7 rows)
+
