@@ -1,0 +1,39 @@
+# === Data files (downloaded via download_data.py, never commit) ===
+data/raw/*
+data/processed/*
+*.csv
+*.xlsx
+!.gitkeep
+
+# === Power BI temp ===
+*.tmp
+*.bak
+~$*
+
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# === Azure / credentials ===
+*.publishsettings
+.azure/
+*.publishsettingsxml
+local.settings.json
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Kaggle ===
+kaggle.json
