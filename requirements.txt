@@ -1,4 +1,22 @@
-pandas>=3.0.1
-numpy>=2.4.2
-psycopg2-binary>=2.9.11
+# V2 Healthcare Insurance Claims Analytics — top-level dependencies.
+# Install: python -m venv venv && venv\Scripts\activate && pip install -r requirements.txt
+
+# Data + analysis
+pandas>=3.0.2
+numpy>=2.4.4
 openpyxl>=3.1.5
+
+# Visualization (EDA + dashboard prep)
+matplotlib>=3.10.9
+seaborn>=0.13.2
+
+# Notebooks
+jupyter>=1.1.1
+ipykernel>=7.2.0
+nbformat>=5.10.4
+
+# Data acquisition
+kaggle>=2.1.2
+
+# PostgreSQL connection (Day 3+)
+psycopg2-binary>=2.9.12
