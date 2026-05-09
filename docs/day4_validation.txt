@@ -1,0 +1,23 @@
+          tbl           |  rows   
+------------------------+---------
+ bridge_claim_diagnosis | 1680716
+ bridge_claim_procedure |   29896
+ dim_beneficiary        |  138556
+ dim_date               |    1096
+ dim_diagnosis_code     |   11040
+ dim_procedure_code     |    1324
+ dim_provider           |    5410
+ fact_inpatient_claims  |   40474
+ fact_outpatient_claims |  517737
+(9 rows)
+
+               check_name                | bad_rows 
+-----------------------------------------+----------
+ bridge_procedure missing procedure_code |        0
+ inpatient claims missing provider       |        0
+ inpatient claims missing beneficiary    |        0
+ outpatient claims missing provider      |        0
+ outpatient claims missing beneficiary   |        0
+ bridge_diagnosis missing diagnosis_code |        0
+(6 rows)
+
