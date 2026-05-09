@@ -1,0 +1,156 @@
+// Star schema for Healthcare Insurance Claims Analytics V2.
+// Renders to docs/star_schema_v2.png with:
+//   dot -Tpng docs/star_schema_v2.dot -o docs/star_schema_v2.png
+//
+// Conventions:
+//   - Yellow boxes: fact tables
+//   - Light blue boxes: dimension tables
+//   - Light green boxes: bridge tables
+//   - Bold rows are primary keys; FK relationships drawn as edges.
+
+digraph star_schema_v2 {
+    graph [
+        rankdir=LR,
+        bgcolor="white",
+        fontname="Helvetica",
+        labelloc="t",
+        label=<<B>Healthcare Insurance Claims Analytics — V2 Star Schema</B><BR/><FONT POINT-SIZE="10">2 facts · 5 dimensions · 2 bridges</FONT>>,
+        nodesep=0.5,
+        ranksep=1.2,
+        splines=spline
+    ];
+    node  [fontname="Helvetica", shape=plaintext, fontsize=10];
+    edge  [fontname="Helvetica", fontsize=9, color="#444444", arrowsize=0.7];
+
+    // ---- FACTS (yellow) ----
+    fact_inpatient_claims [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#FFE599">
+          <TR><TD COLSPAN="1"><B>fact_inpatient_claims</B><BR/><FONT POINT-SIZE="9">~40,474 rows</FONT></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>claim_id (PK)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">beneficiary_id (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">provider_id (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">claim_start_date (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">claim_end_date (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">admission_date (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">discharge_date (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">attending_physician_id</TD></TR>
+          <TR><TD ALIGN="LEFT">operating_physician_id</TD></TR>
+          <TR><TD ALIGN="LEFT">other_physician_id</TD></TR>
+          <TR><TD ALIGN="LEFT">diagnosis_group_code (DRG)</TD></TR>
+          <TR><TD ALIGN="LEFT">admit_diagnosis_code</TD></TR>
+          <TR><TD ALIGN="LEFT">insc_claim_amt_reimbursed</TD></TR>
+          <TR><TD ALIGN="LEFT">deductible_amt_paid</TD></TR>
+        </TABLE>
+    >];
+
+    fact_outpatient_claims [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#FFE599">
+          <TR><TD COLSPAN="1"><B>fact_outpatient_claims</B><BR/><FONT POINT-SIZE="9">~517,737 rows</FONT></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>claim_id (PK)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">beneficiary_id (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">provider_id (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">claim_start_date (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">claim_end_date (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT">attending_physician_id</TD></TR>
+          <TR><TD ALIGN="LEFT">operating_physician_id</TD></TR>
+          <TR><TD ALIGN="LEFT">other_physician_id</TD></TR>
+          <TR><TD ALIGN="LEFT">admit_diagnosis_code</TD></TR>
+          <TR><TD ALIGN="LEFT">insc_claim_amt_reimbursed</TD></TR>
+          <TR><TD ALIGN="LEFT">deductible_amt_paid</TD></TR>
+        </TABLE>
+    >];
+
+    // ---- DIMENSIONS (light blue) ----
+    dim_beneficiary [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#CFE2F3">
+          <TR><TD><B>dim_beneficiary</B><BR/><FONT POINT-SIZE="9">~138,556 rows</FONT></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>beneficiary_id (PK)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">date_of_birth, date_of_death</TD></TR>
+          <TR><TD ALIGN="LEFT">gender, race, state_code, county</TD></TR>
+          <TR><TD ALIGN="LEFT">has_renal_disease</TD></TR>
+          <TR><TD ALIGN="LEFT">11 chronic_* flags</TD></TR>
+          <TR><TD ALIGN="LEFT">months_part_a/b_coverage</TD></TR>
+          <TR><TD ALIGN="LEFT">ip/op_annual_reimburse_amt</TD></TR>
+          <TR><TD ALIGN="LEFT">ip/op_annual_deductible_amt</TD></TR>
+        </TABLE>
+    >];
+
+    dim_provider [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#CFE2F3">
+          <TR><TD><B>dim_provider</B><BR/><FONT POINT-SIZE="9">~5,410 rows · 9.35% fraud-flagged</FONT></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>provider_id (PK)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">is_potentially_fraudulent</TD></TR>
+        </TABLE>
+    >];
+
+    dim_date [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#CFE2F3">
+          <TR><TD><B>dim_date</B><BR/><FONT POINT-SIZE="9">calendar dimension</FONT></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>date_key (PK)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">day_of_week, day_name</TD></TR>
+          <TR><TD ALIGN="LEFT">day_of_month, day_of_year</TD></TR>
+          <TR><TD ALIGN="LEFT">week_of_year</TD></TR>
+          <TR><TD ALIGN="LEFT">month_number, month_name</TD></TR>
+          <TR><TD ALIGN="LEFT">quarter, year, is_weekend</TD></TR>
+        </TABLE>
+    >];
+
+    dim_diagnosis_code [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#CFE2F3">
+          <TR><TD><B>dim_diagnosis_code</B></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>diagnosis_code (PK)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">icd_version</TD></TR>
+          <TR><TD ALIGN="LEFT">description</TD></TR>
+        </TABLE>
+    >];
+
+    dim_procedure_code [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#CFE2F3">
+          <TR><TD><B>dim_procedure_code</B></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>procedure_code (PK)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">code_system</TD></TR>
+          <TR><TD ALIGN="LEFT">description</TD></TR>
+        </TABLE>
+    >];
+
+    // ---- BRIDGES (light green) ----
+    bridge_claim_diagnosis [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#D9EAD3">
+          <TR><TD><B>bridge_claim_diagnosis</B><BR/><FONT POINT-SIZE="9">~2.5–3M rows</FONT></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>claim_id (FK, PK pt 1)</B></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>diagnosis_position (PK pt 2)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">diagnosis_code (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9"><I>1=primary, 2-10=secondary</I></FONT></TD></TR>
+        </TABLE>
+    >];
+
+    bridge_claim_procedure [label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#D9EAD3">
+          <TR><TD><B>bridge_claim_procedure</B></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>claim_id (FK, PK pt 1)</B></TD></TR>
+          <TR><TD ALIGN="LEFT"><B>procedure_position (PK pt 2)</B></TD></TR>
+          <TR><TD ALIGN="LEFT">procedure_code (FK)</TD></TR>
+          <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9"><I>positions 1-6</I></FONT></TD></TR>
+        </TABLE>
+    >];
+
+    // ---- RELATIONSHIPS ----
+    // Inpatient fact -> dimensions
+    fact_inpatient_claims  -> dim_beneficiary    [label="patient"];
+    fact_inpatient_claims  -> dim_provider       [label="billed by"];
+    fact_inpatient_claims  -> dim_date           [label="claim/admit/discharge dates"];
+
+    // Outpatient fact -> dimensions
+    fact_outpatient_claims -> dim_beneficiary    [label="patient"];
+    fact_outpatient_claims -> dim_provider       [label="billed by"];
+    fact_outpatient_claims -> dim_date           [label="claim dates"];
+
+    // Bridges connect to facts and to code dims
+    fact_inpatient_claims  -> bridge_claim_diagnosis [style=dashed];
+    fact_outpatient_claims -> bridge_claim_diagnosis [style=dashed];
+    bridge_claim_diagnosis -> dim_diagnosis_code     [label="ICD code"];
+
+    fact_inpatient_claims  -> bridge_claim_procedure [style=dashed];
+    fact_outpatient_claims -> bridge_claim_procedure [style=dashed];
+    bridge_claim_procedure -> dim_procedure_code     [label="proc code"];
+}
