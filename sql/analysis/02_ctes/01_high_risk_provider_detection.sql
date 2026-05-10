@@ -36,6 +36,15 @@ risk_scored AS (
         ROUND((pct_volume * 0.4 + pct_avg_amount * 0.3 + pct_claims_per_patient * 0.3)::numeric, 4) AS composite_risk_score
     FROM provider_percentiles pp
     JOIN dim_provider p ON p.provider_id = pp.provider_id
+),
+percentile_filtered AS (
+    -- Rank what's already ranked: PERCENT_RANK over the composite score itself.
+    -- Necessary because composite_risk_score is a weighted sum of three percentiles,
+    -- not a percentile -- its distribution caps below 1.0 (the three signals are
+    -- anti-correlated, so no provider scores top across all three at once).
+    SELECT *,
+        PERCENT_RANK() OVER (ORDER BY composite_risk_score) AS composite_percentile
+    FROM risk_scored
 )
 SELECT
     provider_id,
@@ -44,11 +53,9 @@ SELECT
     unique_patients,
     ROUND((total_claims::float / NULLIF(unique_patients, 0))::numeric, 2) AS claims_per_patient,
     ROUND(avg_claim::numeric, 2) AS avg_claim,
-    composite_risk_score
-FROM risk_scored
--- Top 20 by composite score. Threshold-based filtering removed:
--- composite_risk_score is a weighted sum of three PERCENT_RANKs, not a percentile,
--- so values of 0.95+ require all three signals to be near-top simultaneously
--- (which they almost never are -- volume and avg-claim are anti-correlated).
+    composite_risk_score,
+    ROUND(composite_percentile::numeric, 4) AS composite_percentile
+FROM percentile_filtered
+WHERE composite_percentile >= 0.95   -- Now correctly = top 5% of composite scores
 ORDER BY composite_risk_score DESC
 LIMIT 20;
