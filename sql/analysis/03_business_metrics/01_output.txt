@@ -1,0 +1,14 @@
+             metric             |   value    
+--------------------------------+------------
+ Total claims                   | 558211
+ Total reimbursed ($)           | $556543140
+ Avg claim ($)                  | $997.01
+ Median inpatient ($)           | $7000
+ Median outpatient ($)          | $80
+ Unique patients                | 138556
+ Unique providers               | 5410
+ Fraud-flagged providers        | 506
+ Provider fraud rate (%)        | 9.35%
+ $ from fraud-flagged providers | $295681120
+(10 rows)
+
