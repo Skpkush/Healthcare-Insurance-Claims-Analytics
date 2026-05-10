@@ -10,12 +10,7 @@ methodology are production-grade.
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791)
 ![Power BI](https://img.shields.io/badge/Power%20BI-PL--300%20Certified-F2C811)
-![Azure](https://img.shields.io/badge/Azure-Cloud%20Pipeline-0078D4)
 ![License](https://img.shields.io/badge/License-MIT-green)
-
-<img width="1919" height="931" alt="Pipeline success" src="https://github.com/user-attachments/assets/0f618c0a-0dbf-4d04-b821-3bb5c7864e50" />
-
-<img width="1902" height="764" alt="PIpeline building" src="https://github.com/user-attachments/assets/e3035e9e-f591-4663-85be-319c92e9924a" />
 
 <img width="1362" height="783" alt="Executive Dashboard 1" src="https://github.com/user-attachments/assets/79e5f8ba-2029-46e7-acad-e152279203eb" />
 
@@ -27,7 +22,7 @@ methodology are production-grade.
 
 ## Project Overview
 
-A complete data analytics platform analyzing **50,000 insurance claims** across **5,000 patients**, **200 hospitals**, and **8 insurers** over 3 years (2022-2024). Built with Python, PostgreSQL, Power BI, and deployed on **Microsoft Azure** with automated ETL pipeline.
+A complete data analytics platform analyzing **50,000 insurance claims** across **5,000 patients**, **200 hospitals**, and **8 insurers** over 3 years (2022-2024). Built with Python, PostgreSQL, and Power BI.
 
 ### Key Findings
 - **Loss Ratio: 55.76%** — profitable portfolio (under 60% threshold)
@@ -40,57 +35,19 @@ A complete data analytics platform analyzing **50,000 insurance claims** across 
 
 ## Architecture
 ```
-LOCAL ENVIRONMENT                    AZURE CLOUD
-================                    ===========
-
-Python Script                       Azure Blob Storage
-(generate_data.py)                  (raw-data container)
-  ↓ generates                            ↓
-6 CSV files ──── upload ────→    Azure Data Factory
-(50K+ records)                   (pl_load_claims_data pipeline)
-                                 Runs daily at 6:00 AM IST
-  ↓ load locally                         ↓
-                                 Azure PostgreSQL
-PostgreSQL (local)               (claims-analytics-sumit)
-  ↓                                      ↓
-20 SQL Queries                   Power BI Dashboard
-  ↓                              (3 pages + 2 hidden)
+Python Script
+(generate_data.py)
+  ↓ generates
+6 CSV files
+(50K+ records)
+  ↓ load locally
+PostgreSQL
+  ↓
+20 SQL Queries
+  ↓
 Power BI Dashboard
 (healthcare_claims.pbix)
 ```
-
----
-
-## Azure Cloud Pipeline
-
-### Resource Group: `rg-claims-analytics`
-
-| Azure Service | Resource Name | Purpose |
-|---|---|---|
-| Azure Database for PostgreSQL | claims-analytics-sumit | Cloud data warehouse |
-| Azure Blob Storage | claimsanalyticssumit | Data lake for CSV files |
-| Azure Data Factory | claims-analytics-adf | Automated ETL orchestration |
-
-### Pipeline: `pl_load_claims_data`
-
-5 sequential Copy Data activities loading dimension tables first, then fact table:
-```
-Copy_dim_date → Copy_dim_patients → Copy_dim_providers → Copy_dim_policies → Copy_fact_claims
-```
-
-**Pipeline Status: ✅ Succeeded**
-
-<img width="1902" height="764" alt="PIpeline building" src="https://github.com/user-attachments/assets/9fb6cb25-63b4-40e7-b462-e461bd419fbe" />
-
-<img width="1919" height="931" alt="Pipeline success" src="https://github.com/user-attachments/assets/240ca2d9-5619-478a-ab6f-59990eb26377" />
-
-### Azure PostgreSQL Server
-
-<img width="1912" height="933" alt="Azure Postgres" src="https://github.com/user-attachments/assets/7ccc11a6-7995-4f69-9c5b-3b576ac7fda5" />
-
-### Azure Blob Storage Overview
-
-<img width="1898" height="855" alt="Azure Blob storage" src="https://github.com/user-attachments/assets/2ea656aa-43cb-4743-9925-82c6bd6852d6" />
 
 ---
 
@@ -229,8 +186,7 @@ SELECT * FROM claim_timeline WHERE claims_90d >= 3;
 | Category | Technologies |
 |---|---|
 | **Languages** | Python, SQL, DAX |
-| **Database** | PostgreSQL 16, Azure Database for PostgreSQL |
-| **Cloud** | Azure Blob Storage, Azure Data Factory, Azure PostgreSQL Flexible Server |
+| **Database** | PostgreSQL 16 |
 | **BI Tools** | Power BI Desktop, Power BI Service |
 | **Python Libraries** | pandas, NumPy, psycopg2 |
 | **Version Control** | Git, GitHub |
@@ -262,7 +218,7 @@ python data/load_to_postgres.py
 healthcare-insurance-claims-analytics/
 ├── data/
 │   ├── generate_data.py        # Python data generator
-│   └── load_to_postgres.py     # Database loader (local + Azure)
+│   └── load_to_postgres.py     # Database loader
 ├── schema/
 │   └── 01_create_schema.sql
 └── queries/
@@ -274,12 +230,6 @@ healthcare-insurance-claims-analytics/
 │   ├── Executive Dashboard 1.png   # Dashboard screenshots
 │   ├── Operartion Dashboard.png
 │   └── Risk dasboard.png
-├── images/
-│   ├── azure_postgresql.png
-│   ├── azure_blob_storage.png
-│   ├── azure_resource_group.png
-│   ├── adf_pipeline_success.png
-│   └── adf_studio_overview.png
 ├── requirements.txt
 └── README.md
 ```
