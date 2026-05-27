@@ -194,7 +194,6 @@ Healthcare-Insurance-Claims-Analytics/  (branch: v2-real-data)
 ├── sql/                                # PostgreSQL schema + queries
 │   ├── schema/                         # CREATE TABLE statements
 │   ├── views/                          # v_provider_features, v_patient_risk_score
-│   └── powerbi_reporting_views.sql
 │
 ├── python/                             # ML pipeline notebooks
 │   ├── 01_eda.ipynb
