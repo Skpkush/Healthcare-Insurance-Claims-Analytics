@@ -93,23 +93,26 @@ The pipeline spans raw data ingestion → PostgreSQL star schema → Azure ADF o
 
 Full cloud pipeline built on Azure — Blob Storage → Azure Data Factory → PostgreSQL (Aiven).
 
+
+### Pipeline Screenshots
+
 #### Resource Group Setup
-![Resource Group](adf/screenshots/01_resource_group_initial.png)
+![Resource Group](azure/screenshots/01_resource_group_initial.png)
 
 #### PostgreSQL Initial Setup
-![PostgreSQL](adf/screenshots/01_PostgresSQL_initial.png)
+![PostgreSQL](azure/screenshots/01_PostgresSQL_initial.png)
 
 #### Linked Services Configuration
-![Linked Services](adf/screenshots/02_linked_services.png)
+![Linked Services](azure/screenshots/02_linked_services.png)
 
 #### ADF Pipeline Canvas
-![Pipeline Canvas](adf/screenshots/03_pipeline_canvas.png)
+![Pipeline Canvas](azure/screenshots/03_pipeline_canvas.png)
 
 #### Pipeline Run — Success (5,410 rows)
-![Pipeline Run](adf/screenshots/04_pipeline_run_success.png)
+![Pipeline Run](azure/screenshots/04_pipeline_run_success.png)
 
 #### ADF Monitor History
-![Monitor History](adf/screenshots/05_adf_monitor_history.png)
+![Monitor History](azure/screenshots/05_adf_monitor_history.png)
 
 ---
 
