@@ -96,7 +96,7 @@ Full cloud pipeline built on Azure — Blob Storage → Azure Data Factory → P
 ### Pipeline Screenshots
 
 #### Resource Group Setup
-![Resource Group](azure/01_resource_group_initial.png)
+"C:\Data science\Project\Healthcare-Insurance-Claims-Analytics\azure\screenshots\01_resource_group_initial.png"
 
 #### PostgreSQL Initial Setup
 ![PostgreSQL](azure/01_PostgresSQL_initial.png)
