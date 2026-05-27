@@ -14,6 +14,20 @@
 
 </div>
 
+## 📸 Dashboard Screenshots
+
+### Page 1 — Executive Overview
+![Executive](dashboard/Executive%20command%20center.png)
+
+### Page 2 — Operations
+![Operations](dashboard/Operations.png)
+
+### Page 3 — Fraud Detection
+![Fraud Detection](dashboard/Fraud%20Dectection.png)
+
+### Page 4 — Provider Detail
+![Provider Detail](dashboard/Provider%20Id%20Details.png)
+
 ---
 
 ## 📌 Project Summary
