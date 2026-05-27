@@ -1,260 +1,239 @@
-# Healthcare & Insurance Claims Analytics
+# 🏥 Healthcare Provider Fraud Detection V2
 
-## End-to-End Data Analytics Platform with Azure Cloud Pipeline
+<div align="center">
 
-## Note on Data
-Data is synthetically generated using Python to simulate realistic insurance 
-claim patterns. The schema design, SQL queries, DAX measures, and analytical 
-methodology are production-grade.
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure%20ADF-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791)
-![Power BI](https://img.shields.io/badge/Power%20BI-PL--300%20Certified-F2C811)
-![License](https://img.shields.io/badge/License-MIT-green)
+**An end-to-end fraud detection analytics solution on real Medicare claims data**
 
-<img width="1362" height="783" alt="Executive Dashboard 1" src="https://github.com/user-attachments/assets/79e5f8ba-2029-46e7-acad-e152279203eb" />
+[📊 Live Dashboard](https://app.powerbi.com/links/wxcRR41LJv?ctid=ed9d315f-9e92-4ac9-a8e7-1d8fe09d45dd&pbi_source=linkShare&bookmarkGuid=4e718836-a58d-4911-a649-6d1e03ea7ee4) · [🗄️ SQL Schema](#database-schema) · [🤖 ML Model](#ml-model) · [📁 Repository](https://github.com/Skpkush/Healthcare-Insurance-Claims-Analytics)
 
-<img width="1369" height="773" alt="Operartion Dashboard" src="https://github.com/user-attachments/assets/a74e4bf3-f955-41ed-8c2a-3bb9f38e13ba" />
-
-<img width="1339" height="768" alt="Risk dasboard" src="https://github.com/user-attachments/assets/97eb0e6b-e76f-4ff3-b4e4-75c75a844175" />
+</div>
 
 ---
 
-## Project Overview
+## 📌 Project Summary
 
-A complete data analytics platform analyzing **50,000 insurance claims** across **5,000 patients**, **200 hospitals**, and **8 insurers** over 3 years (2022-2024). Built with Python, PostgreSQL, and Power BI.
+This project builds a **production-grade fraud detection pipeline** on the [Kaggle Healthcare Provider Fraud Detection dataset](https://www.kaggle.com/datasets/rohitrox/healthcare-provider-fraud-detection-analysis), covering **558,211 Medicare claims** across **5,410 providers** from 2008–2010.
 
-### Key Findings
-- **Loss Ratio: 55.76%** — profitable portfolio (under 60% threshold)
-- **Cancer Treatment**: 5% of claims but **16.8% of total costs** — highest cost diagnosis
-- **24 high-risk patients** flagged responsible for **₹9.34 Crore** in claims
-- **₹19.4 Crore** in avoidable rejections due to Incomplete Documents — recoverable through process fix
-- **Gujarat** is the highest claiming state at ₹140.99 Crore
+> **Core finding: Q4 billing providers (top 25% by total billing) are 226× more likely to be fraudulent than Q1 providers — 34.02% fraud rate vs 0.15%.**
+
+The pipeline spans data ingestion → PostgreSQL schema → Azure ADF orchestration → Python ML → Power BI 4-page interactive dashboard.
 
 ---
 
-## Architecture
-```
-Python Script
-(generate_data.py)
-  ↓ generates
-6 CSV files
-(50K+ records)
-  ↓ load locally
-PostgreSQL
-  ↓
-20 SQL Queries
-  ↓
-Power BI Dashboard
-(healthcare_claims.pbix)
-```
+## 🔑 Key Findings
 
----
-
-## Data Model — Star Schema
-```
-                    ┌──────────────┐
-                    │   dim_date   │
-                    │──────────────│
-                    │ date_key (PK)│
-                    │ full_date    │
-                    │ year, month  │
-                    │ quarter      │
-                    └──────┬───────┘
-                           │
-┌──────────────┐    ┌──────┴───────┐    ┌──────────────┐
-│ dim_patients │    │ fact_claims  │    │dim_providers │
-│──────────────│    │──────────────│    │──────────────│
-│patient_id(PK)├────┤claim_id (PK) ├────┤provider_id(PK)│
-│ age, gender  │    │ patient_id   │    │hospital_name │
-│ city, state  │    │ provider_id  │    │ speciality   │
-│chronic_cond  │    │ policy_id    │    │ tier, city   │
-└──────────────┘    │ date_key     │    └──────────────┘
-                    │ claim_amount │
-┌──────────────┐    │approved_amt  │
-│ dim_policies │    │ status       │
-│──────────────│    │diagnosis_name│
-│policy_id(PK) ├────┤settlement_day│
-│ insurer      │    │is_emergency  │
-│ plan_type    │    │is_readmission│
-│ premium      │    └──────────────┘
-└──────────────┘
-```
-
-| Table | Rows | Description |
+| Finding | Metric | Insight |
 |---|---|---|
-| fact_claims | 50,000 | Insurance claim transactions |
-| dim_date | 1,096 | Calendar dimension (2022-2024) |
-| dim_patients | 5,000 | Patient demographics |
-| dim_providers | 200 | Hospital information |
-| dim_policies | 40 | Insurance policy details |
+| **226× Billing Concentration** | Q1: 0.15% → Q4: 34.02% | Top billing quartile drives nearly all fraud |
+| **Velocity Signal** | 96.08% accuracy | 96% of high-velocity providers (>10 claims/day) are fraud-flagged |
+| **Diagnosis Stuffing** | 1.66× ratio | Fraud providers file 9.92% vs 5.99% claims with 9+ diagnosis codes |
+| **ML Model Recall** | 90.1% | Logistic Regression catches 9 out of 10 fraud providers |
+| **Cohort Cost Gradient** | 18.8× | Very High cohort costs $12,306 vs Healthy cohort $690 avg |
+| **Fraud Exposure** | $295.68M | 53.1% of total $556.54M reimbursed linked to fraud providers |
 
 ---
 
-## SQL Analysis Highlights
+## 🏗️ Architecture
 
-### 20 Advanced Queries Covering:
-
-**Window Functions:** ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, PERCENT_RANK, NTILE, Running Totals
-
-**CTEs:** Multi-level Common Table Expressions for fraud detection and complex business logic
-
-**Fraud Detection:** 90-day rolling window claim frequency analysis using `RANGE BETWEEN INTERVAL '90 days' PRECEDING AND CURRENT ROW`
-
-**Z-Score Anomaly Detection:** Statistical outlier identification — claims with Z-score > 3 flagged as extreme anomalies
-
-**Business Analysis:** Loss ratio trends, insurer benchmarking, hospital performance quartiles, rejection root cause analysis
-
-### Sample Query — Fraud Detection
-```sql
-WITH claim_timeline AS (
-    SELECT patient_id, claim_id, claim_date,
-           COUNT(*) OVER (
-               PARTITION BY patient_id 
-               ORDER BY claim_date 
-               RANGE BETWEEN INTERVAL '90 days' PRECEDING AND CURRENT ROW
-           ) AS claims_90d
-    FROM fact_claims
-)
-SELECT * FROM claim_timeline WHERE claims_90d >= 3;
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        DATA PIPELINE                                │
+│                                                                     │
+│  Kaggle CSV  →  Azure Blob  →  Azure ADF  →  PostgreSQL  →  Views  │
+│  (558K rows)    (Raw zone)     (Pipeline)    (9 tables)   (ML feats)│
+└─────────────────────────────────────────────────────────────────────┘
+                                    ↓
+┌─────────────────────────────────────────────────────────────────────┐
+│                      ANALYTICS LAYER                                │
+│                                                                     │
+│   Python (scikit-learn)    →    Power BI (4 pages)                  │
+│   LR + XGBoost + RF             Executive | Operations |            │
+│   AUC 0.9573 | Recall 90.1%     Fraud Detection | Provider Detail   │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Power BI Dashboard
+## 📊 Dashboard — 4 Pages
 
-### 30+ DAX Measures across 6 folders:
-- `_01_Base`: Total Claims, Total Claimed (Cr), Approved Value, Avg Claim
-- `_02_Rates`: Approval Rate, Rejection Rate, Loss Ratio, Emergency Rate
-- `_03_Time`: YoY Growth %, YTD Claims, Moving Average, Running Total
-- `_04_Advanced`: % of Total (ALL), % Within Insurer (ALLEXCEPT), RANKX
-- `_05_Risk`: Patient Risk Score (5-factor model), Risk Category
-- `_06_Dynamic`: Dynamic Titles, YoY Arrow Indicators, Status Labels
+### [🔗 View Live Dashboard](https://app.powerbi.com/links/wxcRR41LJv?ctid=ed9d315f-9e92-4ac9-a8e7-1d8fe09d45dd&pbi_source=linkShare&bookmarkGuid=4e718836-a58d-4911-a649-6d1e03ea7ee4)
 
-### Dashboard Pages:
-
-**Page 1 — Executive Command Center**
-- 6 KPI Cards with conditional formatting
-- Insurer Performance Scorecard (Clustered Bar)
-- Monthly Claims Trend (Combo Chart with forecast)
-- Decomposition Tree (AI Visual)
-- Geographic Map
-
-**Page 2 — Operational Deep Dive**
-- Claim Size Distribution (Histogram)
-- Rejection Root Cause (100% Stacked Bar)
-- Hospital Performance Matrix (Heatmap)
-- Key Influencers (AI Visual — auto-detects rejection causes)
-- Treatment Type Trends (Stacked Area)
-
-**Page 3 — Fraud & Risk Intelligence**
-- Risk Distribution (3 Gauge Charts)
-- Claim Anomaly Scatter Plot (Fraud Radar)
-- High-Frequency Claimants Table (Data Bars + Color Scale)
-- Age vs Chronic Condition Risk Heatmap
-- Emergency Funnel by Hospital Tier
-
-**Hidden Pages:**
-- Patient Detail (Drill-Through) — right-click any patient for full profile
-- Custom Tooltip — mini-dashboard on hover
-
-**Advanced Features:**
-- Page Navigation Buttons on all pages
-- Synced Slicers across pages
-- 8 Conditional Formatting rules
-
----
-
-## Patient Risk Scoring Model
-
-5-factor weighted scoring (max 100 points):
-
-| Factor | Max Points | Logic |
+| Page | Purpose | Key Visuals |
 |---|---|---|
-| Age | 20 | 60+ gets full points |
-| Chronic Condition | 25 | Heart Disease/COPD = 25, Diabetes = 15, None = 0 |
-| Claim Frequency | 20 | 15+ claims = 20 points |
-| Emergency Visits | 15 | 3+ emergencies = 15 points |
-| Readmissions | 20 | 2+ readmissions = 20 points |
-
-**Classification:** HIGH RISK (65+) | MEDIUM RISK (40-64) | LOW RISK (<40)
+| **Page 1 — Executive** | C-suite portfolio overview | 6 KPI cards, combo trend chart, decomposition tree, key influencers, gauge |
+| **Page 2 — Operations** | State/cohort operational view | US fraud map, provider scatter, cohort heatmap, waterfall, top 10 diagnosis |
+| **Page 3 — Fraud Detection** | 226× hero analysis + ML results | Quartile bar chart, ML cards, velocity scatter, diagnosis stuffing, investigation queue |
+| **Page 4 — Provider Detail** | Single-provider drill-through | Billing trend, risk flags, vs portfolio comparison, investigation verdict |
 
 ---
 
-## Tech Stack
+## 🗄️ Database Schema
 
-| Category | Technologies |
+**PostgreSQL — 9 tables, 2.43M total rows**
+
+```
+dim_beneficiary          (138,556 rows)  — Patient demographics + chronic conditions
+dim_provider             (  5,410 rows)  — Provider fraud labels
+dim_date                 (  1,096 rows)  — Date dimension
+dim_diagnosis_code       (  2,213 rows)  — ICD-9 codes
+fact_inpatient_claims    ( 40,474 rows)  — Inpatient claim records
+fact_outpatient_claims   (517,737 rows)  — Outpatient claim records
+bridge_claim_diagnosis   (1,710,000 rows) — Claim ↔ diagnosis mapping
+v_provider_features      (  5,410 rows)  — ML feature view (28 engineered features)
+v_patient_risk_score     (138,556 rows)  — Patient risk scoring view
+```
+
+**Key engineered features (v_provider_features):**
+- `avg_daily_claims` — velocity signal
+- `claims_with_9plus_diagnoses` — stuffing detection
+- `avg_patient_chronic_count` — patient complexity proxy
+- `coefficient_of_variation` — billing inconsistency
+- `peak_daily_claims` — outlier velocity
+
+---
+
+## 🤖 ML Model
+
+**Task**: Binary classification — predict `is_potentially_fraudulent` (provider level)
+
+**Training set**: 4,328 providers | **Test set**: 1,082 providers | **Base fraud rate**: 9.35%
+
+| Model | AUC | Recall (Fraud) | Precision (Fraud) | F1 |
+|---|---|---|---|---|
+| **Logistic Regression (balanced)** | **0.9573** | **90.1%** | **40.4%** | **0.558** |
+| XGBoost | 0.9089 | 65.4% | 58.1% | 0.615 |
+| Random Forest | 0.8934 | 61.2% | 55.3% | 0.581 |
+
+> **Why LR won**: In fraud detection, recall is priority — missing a fraudulent provider costs more than a false positive. LR with `class_weight='balanced'` achieves 90.1% recall vs XGBoost's 65.4%, catching 26 more fraud providers per review cycle.
+
+**Investigation Queue**: 225 providers flagged (91 TP + 134 FP) per review cycle.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
 |---|---|
-| **Languages** | Python, SQL, DAX |
-| **Database** | PostgreSQL 16 |
-| **BI Tools** | Power BI Desktop, Power BI Service |
-| **Python Libraries** | pandas, NumPy, psycopg2 |
-| **Version Control** | Git, GitHub |
+| **Data Ingestion** | Azure Data Factory (ADF) pipeline |
+| **Storage** | Azure Blob Storage (raw zone) |
+| **Database** | PostgreSQL 15 (Aiven cloud) |
+| **Feature Engineering** | PostgreSQL views + window functions |
+| **ML** | Python — scikit-learn, pandas, numpy, matplotlib |
+| **Visualization** | Microsoft Power BI Desktop + Service |
+| **Version Control** | Git + GitHub (branch: v2-real-data) |
 
 ---
 
-## How to Run
-```bash
-# 1. Clone the repository
-git clone https://github.com/Skpkush/Healthcare-Insurance-Claims-Analytics.git
-cd Healthcare-Insurance-Claims-Analytics
+## 📁 Repository Structure
 
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Generate the dataset
-python data/generate_data.py
-
-# 4. Load data into PostgreSQL
-python data/load_to_postgres.py
 ```
-
-> To open the dashboard — download `Claim analytics.pbix` from the `dashboard/` folder and open with Power BI Desktop.
-
----
-
-## Project Structure
-```
-healthcare-insurance-claims-analytics/
+Healthcare-Insurance-Claims-Analytics/
+│
 ├── data/
-│   ├── generate_data.py        # Python data generator
-│   └── load_to_postgres.py     # Database loader
-├── schema/
-│   └── 01_create_schema.sql
-└── queries/
-|   ├── business_analysis/     (7 files — loss ratio, risk scoring, rejection, state analysis, benchmarking, scorecard, monthly trend)
-|   ├── ctes/                  (4 real CTEs + 2 redirect stubs pointing to fraud_detection/)
-|   └── window_functions/      (7 files — running total, rank, moving avg, LAG, state rank, percentile, first/last)
+│   └── raw/                    # Kaggle source CSVs (gitignored)
+│
+├── sql/
+│   ├── schema/                 # CREATE TABLE statements
+│   ├── views/                  # v_provider_features, v_patient_risk_score
+│   └── analysis/               # 226x finding queries
+│
+├── python/
+│   ├── 01_eda.ipynb            # Exploratory analysis
+│   ├── 02_feature_engineering.ipynb
+│   ├── 03_ml_models.ipynb      # LR + XGBoost + RF comparison
+│   └── 04_shap_analysis.ipynb  # Feature importance
+│
+├── adf/
+│   └── pipeline/               # Azure ADF pipeline JSON
+│
 ├── dashboard/
-│   ├── Claim analytics.pbix        # Power BI dashboard file
-│   ├── Executive Dashboard 1.png   # Dashboard screenshots
-│   ├── Operartion Dashboard.png
-│   └── Risk dasboard.png
-├── requirements.txt
+│   └── healthcare_v2_main.pbix # Power BI dashboard (4 pages)
+│
 └── README.md
 ```
 
 ---
 
-## Certifications
+## 🚀 How to Run
 
-- **PL-300** — Microsoft Power BI Data Analyst
-- **AWS Cloud Practitioner** — Amazon Web Services
-- **CFA Investment Foundations** — CFA Institute
-- **AZ900** -  Microsoft Azure Fundamental
-- **DP900** -  Microsoft Azure Data Fundamental
+### Prerequisites
+```bash
+pip install pandas numpy scikit-learn matplotlib seaborn psycopg2
+```
+
+### 1. Database Setup
+```sql
+-- Run in order:
+-- sql/schema/01_create_tables.sql
+-- sql/schema/02_create_views.sql
+```
+
+### 2. Load Data
+```bash
+# Via Azure ADF pipeline or direct psql:
+psql -h <host> -U <user> -d healthcare_v2 -f sql/schema/01_create_tables.sql
+```
+
+### 3. Run ML Pipeline
+```bash
+jupyter notebook python/03_ml_models.ipynb
+```
+
+### 4. Open Dashboard
+```
+Open dashboard/healthcare_v2_main.pbix in Power BI Desktop
+OR view live: https://app.powerbi.com/links/wxcRR41LJv?ctid=ed9d315f-9e92-4ac9-a8e7-1d8fe09d45dd&pbi_source=linkShare&bookmarkGuid=4e718836-a58d-4911-a649-6d1e03ea7ee4
+```
 
 ---
 
-## Author
+## 💡 DAX Highlights
 
-**Sumit Prajapat**
-Data Analyst | Power BI | SQL | Python | Azure
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5)](https://www.linkedin.com/in/sumit-k-prajapat/)
-[![GitHub](https://img.shields.io/badge/GitHub-Skpkush-181717)](https://github.com/Skpkush)
-[![Email](https://img.shields.io/badge/Email-Contact-D14836)](mailto:sumitkprajapat@gmail.com)
+```dax
+-- 226x Fraud Concentration
+Quartile Fraud Rate =
+DIVIDE(
+    CALCULATE(DISTINCTCOUNT('public v_provider_features'[provider_id]),
+        'public v_provider_features'[label] = 1),
+    DISTINCTCOUNT('public v_provider_features'[provider_id]), 0)
+
+-- Composite Risk Flag (6-level)
+Risk Flag =
+VAR IsQ4 = 'public v_provider_features'[Billing Quartile] = "Q4 (Highest)"
+VAR IsVelocity = 'public v_provider_features'[peak_daily_claims] > 10
+VAR IsFraud = 'public v_provider_features'[label] = 1
+RETURN
+SWITCH(TRUE(),
+    IsFraud && IsQ4 && IsVelocity, "CRITICAL",
+    IsFraud && IsQ4,               "HIGH RISK",
+    IsFraud && IsVelocity,         "FRAUD + VELOCITY",
+    IsFraud,                       "FRAUD FLAGGED",
+    IsQ4 && IsVelocity,            "MONITOR CLOSELY",
+    IsQ4,                          "ELEVATED",
+                                   "NORMAL")
+```
 
 ---
 
-*Built as a portfolio project demonstrating end-to-end data analytics capabilities from data generation to cloud deployment.*
+## 📬 Contact
 
+**Sumit Kumar Prajapat**
+- 🔗 GitHub: [github.com/Skpkush](https://github.com/Skpkush)
+- 💼 LinkedIn: [linkedin.com/in/sumit-kumar-prajapat](https://linkedin.com/in/sumit-kumar-prajapat)
+- 📧 Certifications: PL-300 | AZ-900 | DP-900 | AWS Cloud Practitioner
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you found it useful!**
+
+*Built on real Medicare data | End-to-end pipeline | Production-grade dashboard*
+
+</div>
