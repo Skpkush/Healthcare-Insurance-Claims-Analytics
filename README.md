@@ -10,8 +10,6 @@
 
 **An end-to-end fraud detection analytics solution on real Medicare claims data**
 
-[📊 Live Dashboard](https://app.powerbi.com/links/wxcRR41LJv?ctid=ed9d315f-9e92-4ac9-a8e7-1d8fe09d45dd&pbi_source=linkShare&bookmarkGuid=4e718836-a58d-4911-a649-6d1e03ea7ee4) · [🗄️ SQL Schema](#database-schema) · [🤖 ML Model](#ml-model) · [📁 Repository](https://github.com/Skpkush/Healthcare-Insurance-Claims-Analytics)
-
 </div>
 
 ## 📸 Dashboard Screenshots
