@@ -10,7 +10,7 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 ### **End-to-end fraud detection analytics pipeline on real Medicare claims data**
-### 558,211 Claims · 5,410 Providers · 226× Fraud Concentration Finding
+### 558,211 Claims · 5,410 Providers · 226× Fraud Concentration · Top 50 Audit List Covers 35.3% of Flagged $
 
 [📥 Download Dashboard](dashboard/Healthcare_Claim_Analytics.pbix) · [🗄️ SQL Schema](#️-database-schema) · [🤖 ML Model](#-ml-model) · [☁️ Azure Pipeline](#️-azure-adf-pipeline)
 
@@ -20,7 +20,7 @@
 
 ## 📌 Project Summary
 
-This project builds a **production-grade fraud detection pipeline** on the [Kaggle Healthcare Provider Fraud Detection dataset](https://www.kaggle.com/datasets/rohitrox/healthcare-provider-fraud-detection-analysis), covering **558,211 Medicare claims** across **5,410 providers** from 2008–2010.
+This project builds a **production-grade fraud detection pipeline** on the [Kaggle Healthcare Provider Fraud Detection dataset](https://www.kaggle.com/datasets/rohitrox/healthcare-provider-fraud-detection-analysis), covering **558,211 Medicare claims** across **5,410 providers**, with claims dated Nov 2008 to Dec 2009.
 
 > **Core Finding: Q4 billing providers (top 25% by total billing) are 226× more likely to be fraudulent than Q1 providers — 34.02% fraud rate vs 0.15%.**
 
@@ -35,9 +35,10 @@ The pipeline spans raw data ingestion → PostgreSQL star schema → Azure ADF o
 | **226× Billing Concentration** | Q1: 0.15% → Q4: 34.02% | Top billing quartile drives nearly all fraud |
 | **Velocity Signal** | 96.08% precision | 96% of high-velocity providers (>10 claims/day) are fraud-flagged |
 | **Diagnosis Stuffing** | 1.66× ratio | Fraud providers file 9.92% vs 5.99% claims with 9+ diagnosis codes |
-| **ML Model Recall** | 90.1% | Logistic Regression catches 9 out of 10 fraud providers |
+| **Audit Target List** | 35.3% of flagged $ | Top 50 providers (0.9%) cover $104.31M, and all 50 are flagged |
+| **ML Model Recall** | 90.1% | Logistic Regression catches 91 of 101 fraud providers on the held-out test set |
 | **Cohort Cost Gradient** | 18.8× | Very High cohort costs $12,306 vs Healthy cohort $690 avg |
-| **Fraud Exposure** | $295.68M | 53.1% of total $556.54M reimbursed linked to fraud providers |
+| **Flagged Exposure** | $295.68M | 506 flagged providers (9.35%) received 53.1% of the $556.54M reimbursed. This is gross exposure, not proven loss. [Reconciliation](docs/exposure_reconciliation.md) |
 
 ---
 
@@ -74,6 +75,8 @@ The pipeline spans raw data ingestion → PostgreSQL star schema → Azure ADF o
 | **Page 4 — Provider Detail** | Single-provider drill-through | Billing trend, risk flags, vs portfolio comparison, investigation verdict |
 
 ### 📸 Dashboard Screenshots
+
+> Screenshots predate the measure fix and show 440 providers and 8.13%. The `.pbix` now returns **506 and 9.35%**. See the [reconciliation](docs/exposure_reconciliation.md).
 
 #### Page 1 — Executive Overview
 ![Executive Overview](dashboard/Executive%20command%20center.png)
@@ -155,12 +158,57 @@ v_patient_risk_score     (138,556 rows)  — Patient risk scoring view
 | Model | AUC | Recall (Fraud) | Precision (Fraud) | F1 |
 |---|---|---|---|---|
 | **Logistic Regression (balanced)** | **0.9573** | **90.1%** | **40.4%** | **0.558** |
-| XGBoost | 0.9089 | 65.4% | 58.1% | 0.615 |
-| Random Forest | 0.8934 | 61.2% | 55.3% | 0.581 |
+| Random Forest | 0.9538 | 78.2% | 53.7% | 0.637 |
+| XGBoost | 0.9404 | 65.3% | 56.9% | 0.608 |
 
-> **Why Logistic Regression won**: In fraud detection, recall is the priority metric — missing a fraudulent provider costs far more than a false positive review. LR with `class_weight='balanced'` achieves **90.1% recall** vs XGBoost's 65.4%, catching **26 more fraud providers** per review cycle at the cost of more false positives.
+All three use the default 0.5 threshold on the same 20% held-out split.
 
-**Investigation Queue**: 225 providers flagged per cycle (91 True Positives + 134 False Positives).
+### Why XGBoost recall was 65%
+
+**The low recall comes mostly from the 0.5 threshold, not from weak ranking.** XGBoost hits AUC 1.0 on train and 0.94 on test, so it memorises the training data and its scores for unseen fraud providers land far below 0.5. Of the 35 fraud providers it missed, the median score was only 0.09. XGBoost already uses `scale_pos_weight`, so class weighting is not the difference. The simpler Logistic Regression does not overfit this way, so 0.5 happens to suit it.
+
+The threshold was tuned on 5-fold cross-validation inside the training set, then graded once on the test set:
+
+| Model | Threshold | Queue | Fraud caught | Recall | Precision |
+|---|---:|---:|---:|---:|---:|
+| XGBoost, default | 0.50 | 116 | 66 / 101 | 65.3% | 56.9% |
+| **XGBoost, tuned** | **0.022** | **313** | **94 / 101** | **93.1%** | **30.0%** |
+| LR, default | 0.50 | 225 | 91 / 101 | 90.1% | 40.4% |
+| LR, tuned | 0.402 | 264 | 92 / 101 | 91.1% | 34.8% |
+
+**Fair comparison, same 225-provider queue:** LR catches 91 and XGBoost catches 84. LR is still the better screen here, but the real gap is 7 providers, not the 25 seen at the default threshold. The other 18 came from the threshold. Tuning buys recall with extra false positives, so the right threshold depends on how many cases the review team can handle.
+
+**Investigation queue:** 225 is the test split only (1,082 providers). Scored out-of-fold across all 5,410 providers, LR flags **1,060** (434 true, 626 false positives) with **85.8% recall**, which is the more stable estimate of the 90.1%. Details: [`threshold_analysis.csv`](ml/reports/threshold_analysis.csv).
+
+---
+
+## 🎯 Audit Target List
+
+**Business question: the audit team can open 50 files this cycle. Which 50, and how much of the flagged dollars do they cover?**
+
+> **Top 50 providers (0.9% of 5,410) cover $104.31M, or 35.3% of the $295.68M at flagged providers. All 50 carry the fraud flag.**
+
+| List size | % of providers | Flagged in list | Coverage of flagged $ |
+|---:|---:|---:|---:|
+| 10 | 0.2% | 10 | 11.4% |
+| 25 | 0.5% | 25 | 21.9% |
+| **50** | **0.9%** | **50** | **35.3%** |
+| 100 | 1.8% | 93 | 52.2% |
+| 200 | 3.7% | 170 | 71.5% |
+
+**Ranking choice:** sorting by reimbursed dollars beat both model scores at list size 50.
+
+| Ranking | Flagged in top 50 | Coverage of flagged $ |
+|---|---:|---:|
+| **Reimbursed dollars** | **50** | **35.3%** |
+| LR score (out-of-fold) | 49 | 32.4% |
+| XGBoost score (out-of-fold) | 50 | 31.8% |
+
+For a list this short, a SQL sort is enough. The models earn their place further down, where billing stops separating cases: 7 of the top 100 by dollars are not flagged.
+
+**Files:** [`audit_top50_providers.csv`](ml/reports/audit_top50_providers.csv) · [`audit_coverage_curve.csv`](ml/reports/audit_coverage_curve.csv) · [`04_audit_top50_providers.sql`](sql/analysis/04_fraud_detection/04_audit_top50_providers.sql)
+
+**Read this with care:** "flagged dollars" means everything paid to labelled providers, not confirmed fraud loss. The label's origin is unknown and billing volume is its strongest predictor, so 50 of 50 may partly reflect how the label was built.
 
 ---
 
@@ -232,12 +280,19 @@ pip install pandas numpy scikit-learn matplotlib seaborn psycopg2
 psql -h <host> -U <user> -d healthcare_v2 -f sql/schema/01_create_tables.sql
 ```
 
-### 3. Run ML Pipeline
+### 3. Rebuild the Audit List and Threshold Analysis (no database needed)
+```bash
+pip install -r requirements.txt
+python data/download_data.py
+python ml/scripts/audit_targeting.py
+```
+
+### 4. Run ML Pipeline
 ```bash
 jupyter notebook python/03_ml_models.ipynb
 ```
 
-### 4. Open Dashboard
+### 5. Open Dashboard
 ```
 Open dashboard/Healthcare_Claim_Analytics.pbix in Power BI Desktop
 ```
