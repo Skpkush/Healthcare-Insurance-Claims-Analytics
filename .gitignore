@@ -4,6 +4,7 @@ data/processed/*
 *.csv
 *.xlsx
 !.gitkeep
+!ml/reports/*.csv
 
 # === Power BI temp ===
 *.tmp

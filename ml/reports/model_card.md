@@ -15,9 +15,25 @@ Four variants on `mv_provider_features` (5,410 providers, 9.35% fraud-flagged), 
 
 For fraud-detection use cases where the cost of a missed fraudster ≫ cost of a false positive (typical in healthcare), **recall on the fraud class is the metric that matters**. Logistic Regression with `class_weight='balanced'` catches **91 of 101 fraud-flagged providers (90.1% recall)** at the default 0.5 threshold, vs Random Forest 78% and XGBoost 65%. It also has the highest AUC-ROC (0.957).
 
-The 40% precision means about 60% of LR's positive predictions are false alarms — but that's a workload of 225 providers/year flagged for review out of 5,410, of which 91 are actual fraud. A human review team can absorb 134 false positives to catch 91 true fraudsters. A fraud detector that misses 35% of fraud (XGBoost) cannot be made up for downstream.
+The 40% precision means about 60% of LR's positive predictions are false alarms — on the 1,082-provider test split that means 225 flagged for review, of which 91 are actual fraud. Scored out-of-fold across all 5,410 providers, the same model flags 1,060 (434 true, 626 false) at 85.8% recall. A human review team can absorb 134 false positives to catch 91 true fraudsters. The 65% XGBoost recall is a default-threshold result; see Threshold analysis below.
 
 If precision is the binding constraint (e.g., automated punitive action, no human review), Random Forest at 54% precision / 78% recall is the better balance.
+
+## Threshold analysis
+
+Comparing recall at a fixed 0.5 compares thresholds as much as models. XGBoost reaches AUC 1.0 on train and 0.94 on test, so unseen fraud cases score low: the 35 it missed have a median score of 0.09.
+
+Thresholds were picked for 90% recall using 5-fold CV inside the training set, then graded once on the test set.
+
+| Model | Threshold | Queue | True positives | Recall | Precision |
+|---|---:|---:|---:|---:|---:|
+| XGBoost default | 0.50 | 116 | 66 | 65.3% | 56.9% |
+| XGBoost tuned | 0.022 | 313 | 94 | 93.1% | 30.0% |
+| LR default | 0.50 | 225 | 91 | 90.1% | 40.4% |
+| LR tuned | 0.402 | 264 | 92 | 91.1% | 34.8% |
+| XGBoost, fixed queue | 0.082 | 225 | 84 | 83.2% | 37.3% |
+
+At the same 225-provider workload LR catches 7 more fraud providers, so it stays the recommended screen. XGBoost was not re-regularised here; lower depth or early stopping may narrow the train/test gap. Reproduce with `python ml/scripts/audit_targeting.py`.
 
 ## Two artifacts saved
 
@@ -73,5 +89,5 @@ This is exactly the kind of result the Day 6 V3 note anticipated: the risk score
 ## Intended use
 
 - Portfolio demonstration of end-to-end ML workflow.
-- **NOT for production fraud detection without further validation** — specifically: temporal hold-out test, calibration curve check, threshold tuning to operational cost ratios, and re-derivation of labels from primary source.
+- **NOT for production fraud detection without further validation** — specifically: temporal hold-out test, calibration curve check, threshold tuning to real operational cost ratios, and re-derivation of labels from primary source.
 - Decent starting point for a production v2: keep LR-balanced as the screen, layer human review, monitor drift in feature distributions monthly.

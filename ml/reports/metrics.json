@@ -1,0 +1,101 @@
+{
+  "reconciliation": {
+    "total_reimbursed": 556543140,
+    "flagged_reimbursed": 295681120,
+    "flagged_share": 0.5313,
+    "flagged_providers_all_claims": 506,
+    "flagged_providers_inpatient": 440,
+    "flagged_providers_outpatient": 462,
+    "flagged_reimbursed_inpatient": 241288510,
+    "flagged_reimbursed_outpatient": 54392610,
+    "total_providers": 5410,
+    "claim_date_min": "2008-11-27",
+    "claim_date_max": "2009-12-31"
+  },
+  "threshold_diagnosis": {
+    "xgb_auc_train": 1.0,
+    "xgb_auc_test": 0.9404,
+    "xgb_auc_train_cv": 0.9274,
+    "lr_auc_test": 0.9573,
+    "xgb_ap_test": 0.712,
+    "lr_ap_test": 0.7542,
+    "xgb_missed_at_05": 35,
+    "xgb_missed_median_score": 0.0898,
+    "xgb_missed_above_tuned_threshold": 28,
+    "xgb_fraud_median_score": 0.8699,
+    "lr_fraud_median_score": 0.9621,
+    "xgb_threshold_tuned": 0.0222,
+    "lr_threshold_tuned": 0.4021
+  },
+  "top50_strategies": {
+    "billing_only": {
+      "flagged_in_top50": 50,
+      "coverage_of_flagged_usd": 0.3528
+    },
+    "lr_score": {
+      "flagged_in_top50": 49,
+      "coverage_of_flagged_usd": 0.3241
+    },
+    "xgb_score": {
+      "flagged_in_top50": 50,
+      "coverage_of_flagged_usd": 0.3178
+    },
+    "lr_score_x_billing": {
+      "flagged_in_top50": 50,
+      "coverage_of_flagged_usd": 0.3528
+    }
+  },
+  "coverage_curve": [
+    {
+      "list_size": 10,
+      "pct_of_providers": 0.0018,
+      "flagged_in_list": 10,
+      "reimbursed_usd": 33669670,
+      "coverage_of_flagged_usd": 0.1139
+    },
+    {
+      "list_size": 25,
+      "pct_of_providers": 0.0046,
+      "flagged_in_list": 25,
+      "reimbursed_usd": 64695970,
+      "coverage_of_flagged_usd": 0.2188
+    },
+    {
+      "list_size": 50,
+      "pct_of_providers": 0.0092,
+      "flagged_in_list": 50,
+      "reimbursed_usd": 104310630,
+      "coverage_of_flagged_usd": 0.3528
+    },
+    {
+      "list_size": 100,
+      "pct_of_providers": 0.0185,
+      "flagged_in_list": 93,
+      "reimbursed_usd": 161776030,
+      "coverage_of_flagged_usd": 0.5216
+    },
+    {
+      "list_size": 200,
+      "pct_of_providers": 0.037,
+      "flagged_in_list": 170,
+      "reimbursed_usd": 236342430,
+      "coverage_of_flagged_usd": 0.7149
+    },
+    {
+      "list_size": 506,
+      "pct_of_providers": 0.0935,
+      "flagged_in_list": 315,
+      "reimbursed_usd": 354748420,
+      "coverage_of_flagged_usd": 0.9093
+    }
+  ],
+  "full_portfolio_queue": {
+    "operating_point": "LR 0.5, all providers",
+    "threshold": 0.5,
+    "queue": 1060,
+    "true_positives": 434,
+    "false_positives": 626,
+    "recall": 0.8577,
+    "precision": 0.4094
+  }
+}

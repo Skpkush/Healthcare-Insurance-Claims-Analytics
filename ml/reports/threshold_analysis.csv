@@ -1,0 +1,7 @@
+model,operating_point,threshold,queue,true_positives,false_positives,recall,precision
+LR balanced,default 0.5,0.5,225,91,134,0.901,0.4044
+XGBoost,default 0.5,0.5,116,66,50,0.6535,0.569
+LR balanced,tuned for 90% recall on train CV,0.4021,264,92,172,0.9109,0.3485
+XGBoost,tuned for 90% recall on train CV,0.0222,313,94,219,0.9307,0.3003
+LR balanced,fixed queue of 225,0.5005,225,91,134,0.901,0.4044
+XGBoost,fixed queue of 225,0.0819,225,84,141,0.8317,0.3733
